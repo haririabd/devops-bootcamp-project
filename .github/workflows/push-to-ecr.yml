@@ -3,6 +3,7 @@ name: Build and push to ECR
 on:
   push:
     branches: [main]
+    paths: ["app/**"]
   workflow_dispatch: {}
 
 permissions:
@@ -30,6 +31,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build, tag, and push image
+        working-directory: app
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
