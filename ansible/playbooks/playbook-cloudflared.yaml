@@ -1,0 +1,44 @@
+- name: Pasang Cloudflare Tunnel
+  hosts: monitor
+  become: true
+
+  tasks:
+    - name: Ensure keyrings directory exists
+      file:
+        path: /usr/share/keyrings
+        state: directory
+        mode: "0755"
+
+    - name: Add Cloudflare GPG key
+      get_url:
+        url: https://pkg.cloudflare.com/cloudflare-main.gpg
+        dest: /usr/share/keyrings/cloudflare-main.gpg
+        mode: "0644"
+
+    - name: Add cloudflared apt repository
+      apt_repository:
+        repo: "deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared {{ ansible_distribution_release }} main"
+        filename: cloudflared
+        state: present
+
+    - name: Install cloudflared
+      apt:
+        name: cloudflared
+        state: present
+        update_cache: true
+
+    - name: Check if cloudflared service is already installed
+      stat:
+        path: /etc/systemd/system/cloudflared.service
+      register: cloudflared_service_file
+
+    - name: Install cloudflared as a system service using the tunnel token
+      command: cloudflared service install {{ cloudflared_tunnel_token }}
+      when: not cloudflared_service_file.stat.exists
+      no_log: true
+
+    - name: Ensure cloudflared service is enabled and running
+      systemd:
+        name: cloudflared
+        enabled: true
+        state: started
