@@ -1,4 +1,16 @@
 #!/bin/bash
+
+# NAT gateway / route table may not be ready the instant this instance boots,
+# so apt-get can fail with "Network is unreachable". Poll until outbound
+# connectivity is up (capped at 5 minutes) before installing anything.
+for i in $(seq 1 30); do
+  if curl -s --max-time 5 -o /dev/null http://ap-southeast-1.ec2.archive.ubuntu.com; then
+    break
+  fi
+  echo "Waiting for network... ($i/30)"
+  sleep 10
+done
+
 apt-get update -y
 apt-get install -y ansible
 

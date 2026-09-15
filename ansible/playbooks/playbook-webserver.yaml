@@ -11,11 +11,28 @@
     - geerlingguy.docker
 
   tasks:
-    - name: Install AWS CLI
+    - name: Ensure unzip is present
       apt:
-        name: awscli
+        name: unzip
         state: present
         update_cache: yes
+
+    - name: Download AWS CLI v2 installer
+      get_url:
+        url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+        dest: /tmp/awscliv2.zip
+
+    - name: Unzip AWS CLI v2 installer
+      unarchive:
+        src: /tmp/awscliv2.zip
+        dest: /tmp
+        remote_src: yes
+        creates: /tmp/aws/install
+
+    - name: Install AWS CLI v2
+      command: /tmp/aws/install
+      args:
+        creates: /usr/local/bin/aws
 
     - name: Login to ECR
       shell: >
