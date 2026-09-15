@@ -5,6 +5,9 @@ application, built as part of the Infratify DevOps bootcamp.
 
 **Live site:** the webserver domain is mapped to [http://web.haririabd.my/](http://web.haririabd.my/)
 
+**Monitoring page:** the monitoring server is mapped to [http://monitoring.haririabd.my/](http://monitoring.haririabd.my/)
+
+
 ## Overview
 
 - **`terraform/`** — provisions the AWS infrastructure: a VPC with public/private subnets,
