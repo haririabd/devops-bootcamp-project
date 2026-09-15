@@ -3,11 +3,13 @@
 Infrastructure-as-code and configuration-management setup for a small AWS-hosted web
 application, built as part of the Infratify DevOps bootcamp.
 
-**Live site:** the webserver domain is mapped to [http://web.haririabd.my/](http://web.haririabd.my/)
+**GH Pages** : [https://document.alharir.my/](https://document.alharir.my/)
 
-**Monitoring page:** the monitoring server is mapped to [http://monitoring.haririabd.my/](http://monitoring.haririabd.my/)
+**Live site:** the webserver domain is mapped to [http://web.alharir.my/](http://web.alharir.my/)
 
-![Webserver domain live](docs/webserver_domain.png)
+**Monitoring page:** the monitoring server is mapped to [http://monitoring.alharir.my/](http://monitoring.alharir.my/)
+
+![Webserver domain live](docs/webserver_domain_new.png)
 
 ## Overview
 
