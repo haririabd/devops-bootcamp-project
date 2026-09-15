@@ -1,0 +1,5 @@
+- name: Pasang Prometheus
+  hosts: monitor
+  become: true
+  roles:
+    - prometheus.prometheus.prometheus

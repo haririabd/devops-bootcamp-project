@@ -1,0 +1,17 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+crash.log
+crash.*.log
+
+# Node
+node_modules/
+dist/
+
+# OS / editor
+.DS_Store
+*.log
+.env
+.env.*
