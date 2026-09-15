@@ -7,6 +7,7 @@ application, built as part of the Infratify DevOps bootcamp.
 
 **Monitoring page:** the monitoring server is mapped to [http://monitoring.haririabd.my/](http://monitoring.haririabd.my/)
 
+![Webserver domain live](docs/webserver_domain.png)
 
 ## Overview
 
